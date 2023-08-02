@@ -1,11 +1,11 @@
-FROM golang:1.14-alpine as builder
+FROM golang:1.15-alpine as builder
 
 WORKDIR /go/src/drone-email
 COPY . .
 
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build
+RUN GOOS=linux GOARM=7 GOARCH=${TARGETARCH} CGO_ENABLED=0 go build
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 RUN apk add --no-cache ca-certificates tzdata
 
