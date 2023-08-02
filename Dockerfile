@@ -3,7 +3,7 @@ FROM golang:1.18-alpine as builder
 WORKDIR /go/src/drone-email
 COPY . .
 
-RUN GOOS=linux GOARCH=${TARGETARCH} CGO_ENABLED=0 go build
+RUN GOOS=linux GOARM=8 GOARCH=${TARGETARCH} CGO_ENABLED=0 go build
 
 FROM alpine:3.18
 
